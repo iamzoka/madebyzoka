@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getAllContent } from "@/lib/content";
-import { transformDate } from "@/lib/utils";
+import { summarizeText, transformDate } from "@/lib/utils";
+import EntryContent from "@/components/EntryContent";
 
 export default async function Page() {
   const articles = getAllContent('articles');
@@ -48,7 +49,7 @@ export default async function Page() {
                     {transformDate(note.meta.date)}
                   </a>
                 </h6>
-                <p>{note.content}</p>
+                <EntryContent contentString={summarizeText(note.content)} />
               </li>
             ))}
           </ul>

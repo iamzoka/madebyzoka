@@ -1,5 +1,6 @@
 import { getAllContent } from '@/lib/content';
 import { transformDate } from '@/lib/utils';
+import EntryContent from "@/components/EntryContent";
 
 export default async function Page() {
   const notes = getAllContent('notes');
@@ -25,7 +26,7 @@ export default async function Page() {
                   {transformDate(note.meta.date)}
                 </a>
               </h4>
-              <p>{note.content}</p>
+              <EntryContent contentString={note.content} />
             </li>
           ))}
         </ul>

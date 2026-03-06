@@ -2,14 +2,7 @@ import { NextResponse } from "next/server";
 import { getAllContent } from "@/lib/content";
 import { buildRss } from "@/lib/rss";
 import { siteMeta, siteUrl } from "@/lib/siteMeta";
-
-function summarize(content: string, maxLength = 160): string {
-  if (content.length <= maxLength) {
-    return content;
-  }
-
-  return content.slice(0, maxLength).trimEnd() + "…";
-}
+import { summarizeText } from "@/lib/utils";
 
 export async function GET() {
   const articles = getAllContent("articles");
@@ -37,7 +30,7 @@ export async function GET() {
       link: url,
       guid: url,
       pubDate,
-      description: note.meta.summary ?? summarize(note.content),
+      description: note.meta.summary ?? summarizeText(note.content),
     };
   });
 

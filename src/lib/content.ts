@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { ContentType, ContentItem, ContentMeta } from './types';
+import { summarizeText } from './utils';
 
 const CONTENT_ROOT = path.join(process.cwd(), 'src/content');
 
@@ -19,7 +20,10 @@ export function getAllContent(type: ContentType): ContentItem[] {
       const { data, content } = matter(raw);
       return {
         slug: f.replace(/\.mdx$/, ''),
-        meta: data as ContentMeta,
+        meta: {
+          ...data as ContentMeta,
+          summary: summarizeText(content),
+        },
         content
       };
     })
