@@ -50,8 +50,7 @@ export const metadata: Metadata = {
   alternates: {
     types: {
       "application/rss+xml": [
-        { url: siteMeta.articles.feedPath, title: siteMeta.articles.title },
-        { url: siteMeta.notes.feedPath, title: siteMeta.notes.title },
+        { url: siteMeta.feed.feedPath, title: siteMeta.feed.title },
       ],
     },
   },

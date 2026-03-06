@@ -5,11 +5,11 @@ export default async function Page() {
     <div className="c-page c-page--ideas-list">
       <header className="c-page__header">
         <div className="u-container">
-          <h1 className='c-page__title'>Ideas & case studies</h1>
+          <h1 className='c-page__title'>Ideas & projects</h1>
 
           <div className="c-page__summary">
-            <p>Showcase of the projects and ideas I&apos;m always thinking about and improving. 
-              And if I don&apos;t have time to do it, maybe somebody else will.</p>
+            <p>Showcase of the projects and ideas I&apos;m always thinking about and tinkering with.</p>
+            <p>The guideline is simple: have an idea, share it, build it or talk about it. Like they say, ideas are cheap, execution is everything. And if I don&apos;t have time to do it, maybe somebody else will.</p>
           </div>
         </div>
       </header>
@@ -42,8 +42,8 @@ export default async function Page() {
 
             <div className="c-project c-card c-card--horizontal">
               <div className="c-card__content">                
-                <h2>Refresh&apos;d studio</h2>
-                <p>Web sites aren&apos;t supposed to be complicated. Business around them shouldn&apos;t be complicated either.</p>
+                <h2>Web development studio</h2>
+                <p>Web sites aren&apos;t supposed to be complicated. Business around them shouldn&apos;t be complicated either. Complex, maybe, but not complicated.</p>
                 <p>I&apos;m trying to create something simple and straightforward.</p>
               </div>
 

@@ -1,13 +1,22 @@
 import { NextResponse } from "next/server";
 import { getAllContent } from "@/lib/content";
 import { buildRss } from "@/lib/rss";
-import { siteMeta } from "@/lib/siteMeta";
+import { siteMeta, siteUrl } from "@/lib/siteMeta";
+
+function summarize(content: string, maxLength = 160): string {
+  if (content.length <= maxLength) {
+    return content;
+  }
+
+  return content.slice(0, maxLength).trimEnd() + "…";
+}
 
 export async function GET() {
   const articles = getAllContent("articles");
+  const notes = getAllContent("notes");
 
-  const items = articles.map((article) => {
-    const url = `https://zlokapa.com/articles/${article.slug}`;
+  const articleItems = articles.map((article) => {
+    const url = `${siteUrl}/articles/${article.slug}`;
     const pubDate = new Date(article.meta.date).toUTCString();
 
     return {
@@ -19,10 +28,27 @@ export async function GET() {
     };
   });
 
+  const noteItems = notes.map((note) => {
+    const url = `${siteUrl}/notes/${note.slug}`;
+    const pubDate = new Date(note.meta.date).toUTCString();
+
+    return {
+      title: note.meta.title,
+      link: url,
+      guid: url,
+      pubDate,
+      description: note.meta.summary ?? summarize(note.content),
+    };
+  });
+
+  const items = [...articleItems, ...noteItems].sort(
+    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+  );
+
   const xml = buildRss({
-    title: siteMeta.articles.title,
-    description: siteMeta.articles.description,
-    feedPath: siteMeta.articles.feedPath,
+    title: siteMeta.feed.title,
+    description: siteMeta.feed.description,
+    feedPath: siteMeta.feed.feedPath,
     items,
   });
 

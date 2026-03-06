@@ -9,6 +9,11 @@ export const siteMeta = {
   ogImageWidth: 1350,
   ogImageHeight: 1080,
   locale: "en_US",
+  feed: {
+    title: "Zoran Zlokapa – Articles & Notes",
+    description: "Articles and notes by Zoran Zlokapa about software and life.",
+    feedPath: "/rss.xml",
+  },
   articles: {
     title: "Zoran Zlokapa – Articles",
     description: "Long-ish form articles by Zoran Zlokapa about software and life.",

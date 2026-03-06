@@ -60,6 +60,12 @@ export const blogroll = [
     category: "Design & Inspiration",
   },
   { 
+    title: "Mikel Monteiro",
+    url: "https://www.mikemonteiro.com/",
+    description: "",
+    category: "Writing",
+  },
+  { 
     title: "Signal vs. Noise",
     url: "https://signalvnoise.com/svn3/",
     description: "",

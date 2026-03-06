@@ -10,7 +10,7 @@ export default async function Page() {
     <>
       <section className="c-section c-section--intro">
         <div className="u-container u-grid">
-          <Image className="c-section__image" width={500} height={500} src="/images/profile-image-lg-bw.png" alt="Zoran Zlokapa profile image" />
+          <Image className="c-section__image u-rounded" width={500} height={500} src="/images/profile-image-lg-bw.png" alt="Zoran Zlokapa profile image" />
 
           <div className="c-section__content">
             <h1>Hey there 👋 I am Zoran, builder of software, explorer of interfaces & code composer.</h1>
