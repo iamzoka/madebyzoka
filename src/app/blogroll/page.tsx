@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getBlogsByCategory } from "@/lib/blogroll";
 import { BlogLink } from "@/lib/types";
 import ContentAlert from "@/partials/ContentAlert";
+
+export const metadata: Metadata = {
+  title: "Blogroll",
+};
 
 export default async function Page() {
   const designBlogs = getBlogsByCategory("Design & Inspiration");

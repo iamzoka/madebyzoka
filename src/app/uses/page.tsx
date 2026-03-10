@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Uses",
+};
+
 export default async function Page() {
   return (
     <div className="c-page c-page--uses">

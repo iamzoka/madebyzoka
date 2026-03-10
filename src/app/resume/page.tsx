@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { siteMeta } from "@/lib/siteMeta";
+
+export const metadata: Metadata = {
+  title: "Resume",
+};
 
 export default async function Page() {
   return (

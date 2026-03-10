@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getAllContent } from '@/lib/content';
 import { transformDate } from '@/lib/utils';
 import EntryContent from "@/components/EntryContent";
+
+export const metadata: Metadata = {
+  title: "Notes",
+};
 
 export default async function Page() {
   const notes = getAllContent('notes');

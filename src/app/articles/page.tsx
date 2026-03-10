@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { getAllContent } from '@/lib/content';
+
+export const metadata: Metadata = {
+  title: "Articles",
+};
 
 export default async function Page() {
   const articles = getAllContent('articles');

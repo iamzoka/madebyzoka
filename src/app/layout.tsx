@@ -19,7 +19,10 @@ const notoSerifDisplay = Noto_Serif_Display({
 })
 
 export const metadata: Metadata = {
-  title: siteMeta.title,
+  title: {
+    default: siteMeta.title,
+    template: "%s – Zoran Zlokapa",
+  },
   description: siteMeta.description,
   metadataBase: new URL(siteUrl),
   icons: {
