@@ -19,12 +19,8 @@ export const siteMeta = {
     description: "Long-ish form articles by Zoran Zlokapa about software and life.",
     feedPath: "/rss.xml",
   },
-  notes: {
-    title: "Zoran Zlokapa – Notes",
-    description: "Short notes, quick thoughts and observations by Zoran Zlokapa.",
-    feedPath: "/notes.xml",
-  },
   githubUrl: "https://github.com/iamzoka",
-  linkedinUrl: "https://linkedin.com/in/iamzoka/",
+  linkedinUrl: "https://linkedin.com/in/zlokapa",
+  blueskyUrl: "https://bsky.app/profile/zlokapa.com",
 } as const;
 

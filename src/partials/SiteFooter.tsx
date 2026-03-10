@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteMeta } from "@/lib/siteMeta";
 
 export default function SiteFooter() {
   return (
@@ -10,9 +11,9 @@ export default function SiteFooter() {
         <Link href="/uses" title="Uses">Uses</Link>
         <Link href="/blogroll" title="Blogroll">Blogroll</Link>
         <Link href="/rss.xml" title="RSS feed for articles">RSS</Link>
-        <a href="https://github.com/iamzoka" title="GitHub">GitHub</a>
-        <a href="https://linkedin.com/in/iamzoka/" title="LinkedIn">LinkedIn</a>
-        <a href="https://bluesky.app/profile/iamzoka.bsky.social" title="Bluesky">Bluesky</a>
+        <a href={siteMeta.githubUrl} title="GitHub">GitHub</a>
+        <a href={siteMeta.linkedinUrl} title="LinkedIn">LinkedIn</a>
+        <a href={siteMeta.blueskyUrl} title="Bluesky">Bluesky</a>
       </nav>
     </footer>
   );
