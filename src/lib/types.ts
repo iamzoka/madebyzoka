@@ -3,8 +3,8 @@ export type ContentType = 'articles' | 'notes';
 export interface ContentMeta {
   title: string;
   date: string;
-  summary?: string;
-  tags?: string[];
+  summary: string;
+  tags: string[];
   customClass?: string;
 }
 

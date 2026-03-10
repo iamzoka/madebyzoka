@@ -49,7 +49,7 @@ export default async function Page() {
                     {transformDate(note.meta.date)}
                   </a>
                 </h6>
-                <EntryContent contentString={summarizeText(note.content)} />
+                <EntryContent contentString={summarizeText(note.meta.summary)} />
               </li>
             ))}
           </ul>
