@@ -4,6 +4,8 @@ import "@/styles/globals.css";
 import SiteFooter from "@/partials/SiteFooter";
 import SiteHeader from "@/partials/SiteHeader";
 import { siteMeta, siteUrl } from "@/lib/siteMeta";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -71,6 +73,8 @@ export default function RootLayout({
         </main>
 
         <SiteFooter />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
