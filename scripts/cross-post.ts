@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { BskyAgent, RichText } from "@atproto/api";
-
-const SITE_URL = "https://zlokapa.com";
+import { AtpAgent, RichText } from "@atproto/api";
+import { siteUrl } from "@/lib/siteMeta";
 
 interface ContentPost {
   title: string;
@@ -28,7 +27,7 @@ function parseContentFile(filePath: string): ContentPost {
 
   const contentType = segments[contentIdx + 1] as "articles" | "notes";
   const slug = path.basename(filePath, ".mdx");
-  const url = `${SITE_URL}/${contentType}/${slug}`;
+  const url = `${siteUrl}/${contentType}/${slug}`;
 
   const title: string = data.title ?? slug;
   const summary: string =
@@ -78,7 +77,7 @@ async function postToBluesky(text: string): Promise<string> {
     );
   }
 
-  const agent = new BskyAgent({ service: "https://bsky.social" });
+  const agent = new AtpAgent({ service: "https://bsky.social" });
   await agent.login({ identifier: handle, password });
 
   const rt = new RichText({ text });
