@@ -1,0 +1,55 @@
+name: Cross-post new content to Bluesky
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/content/articles/**.mdx"
+      - "src/content/notes/**.mdx"
+
+jobs:
+  cross-post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect new content files
+        id: detect
+        run: |
+          FILES=$(git diff --diff-filter=A --name-only HEAD~1 -- \
+            'src/content/articles/*.mdx' \
+            'src/content/notes/*.mdx')
+
+          if [ -z "$FILES" ]; then
+            echo "No new content files found."
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "New files detected:"
+            echo "$FILES"
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+            echo "files<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$FILES" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.detect.outputs.has_files == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.detect.outputs.has_files == 'true'
+        run: npm ci
+
+      - name: Cross-post to Bluesky
+        if: steps.detect.outputs.has_files == 'true'
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+        run: npx tsx scripts/cross-post.ts ${{ steps.detect.outputs.files }}
