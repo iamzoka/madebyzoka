@@ -46,13 +46,13 @@ function parseContentFile(filePath: string): ContentPost {
 // ---------------------------------------------------------------------------
 
 function buildPostText(post: ContentPost): string {
-  const label = post.contentType === "articles" ? "New article" : "New note";
-  const prefix = `${label}: ${post.title}\n\n`;
+  const label = post.contentType === "articles" ? "I wrote a new article" : "";
+  const prefix = `${label}: ${post.contentType === "articles" && post.title}\n\n`;
   const suffix = `\n\n${post.url}`;
   const budget = 300 - [...prefix].length - [...suffix].length;
 
   if (budget <= 0) {
-    return `${label}: ${post.title}\n\n${post.url}`.slice(0, 300);
+    return `${label}: ${post.contentType === "articles" && post.title}\n\n${post.url}`.slice(0, 300);
   }
 
   const summaryTrimmed =
