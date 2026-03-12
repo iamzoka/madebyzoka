@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import { fileURLToPath } from 'url';
+import { spawn } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,6 +56,20 @@ function buildFrontmatter({ type, title, tags, date, summary }) {
   lines.push('---', '', 'Write something interesting here.');
 
   return lines.join('\n');
+}
+
+function openInIAWriter(filePath) {
+  try {
+    const child = spawn('open', [filePath, '-a', '/Applications/iA Writer.app'], {
+      stdio: 'inherit',
+    });
+
+    child.on('error', (err) => {
+      console.error('Failed to open iA Writer:', err);
+    });
+  } catch (err) {
+    console.error('Error launching iA Writer:', err);
+  }
 }
 
 async function main() {
@@ -132,6 +147,7 @@ async function main() {
 
     fs.writeFileSync(filePath, frontmatter, 'utf8');
     console.log(`Created ${type.slice(0, -1)}: ${filePath}`);
+    openInIAWriter(filePath);
   } catch (err) {
     console.error('Error creating content file:', err);
     process.exitCode = 1;

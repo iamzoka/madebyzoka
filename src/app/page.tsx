@@ -2,10 +2,14 @@ import Image from "next/image";
 import { getAllContent } from "@/lib/content";
 import { summarizeText, transformDate } from "@/lib/utils";
 import EntryContent from "@/components/EntryContent";
+import Link from "next/link";
 
 export default async function Page() {
   const articles = getAllContent('articles');
   const notes = getAllContent('notes');
+
+  const limitedArticles = articles.slice(0, 5);
+  const limitedNotes = notes.slice(0, 5);
   
   return (
     <>
@@ -31,28 +35,36 @@ export default async function Page() {
         </header>
 
         <div className="u-container u-grid">
-          <ul className="c-section-articles-list c-headlines">
-            {articles.map((article) => (
-              <li key={article.slug}>
-                <h3><a href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</a></h3>
-                <p className="c-date-line"><small>{transformDate(article.meta.date)}</small></p>
-                <p>{article.meta.summary}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="c-section-articles-list">
+            <ul className="c-headlines">
+              {limitedArticles.map((article) => (
+                <li key={article.slug}>
+                  <h3><a href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</a></h3>
+                  <p className="c-date-line"><small>{transformDate(article.meta.date)}</small></p>
+                  <p>{article.meta.summary}</p>
+                </li>
+              ))}
+            </ul>
 
-          <ul className="c-section-notes-list c-headlines">
-            {notes.map((note) => (
-              <li key={note.slug}>
-                <h6>
-                  <a href={`/notes/${note.slug}`} title={transformDate(note.meta.date)}>
-                    {transformDate(note.meta.date)}
-                  </a>
-                </h6>
-                <EntryContent contentString={summarizeText(note.meta.summary)} />
-              </li>
-            ))}
-          </ul>
+            {limitedArticles.length > 5 && <p><Link href="/articles">View all articles</Link></p>}
+          </div>
+
+          <div className="c-section-notes-list">
+            <ul className="c-headlines">
+              {limitedNotes.map((note) => (
+                <li key={note.slug}>
+                  <h6>
+                    <a href={`/notes/${note.slug}`} title={transformDate(note.meta.date)}>
+                      {transformDate(note.meta.date)}
+                    </a>
+                  </h6>
+                  <EntryContent contentString={summarizeText(note.meta.summary)} />
+                </li>
+              ))}
+            </ul>
+
+            {limitedNotes.length > 5 && <p><Link href="/notes">View all notes</Link></p>}
+          </div>
         </div>
       </section>
     </>
