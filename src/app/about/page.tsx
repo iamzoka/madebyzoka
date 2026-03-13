@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import PageHeader from "@/partials/PageHeader";
 
 export const metadata: Metadata = {
   title: "About",
@@ -7,18 +8,13 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <article className="c-page c-page--about">
-      <header className="c-page__header">
-        <div className="u-container">
-          <h1 className='c-page__title'>Not so serious version of my biography</h1>
-          <div className="c-page__summary">
-            <p>My first browser was Netscape Navigator. I was there when the web was new, 
-              strange and weird and I fell in love with it right away.</p>
-          </div>
-        </div>
-      </header>
+    <article className="c-page c-page--single c-page--about u-grid">
+      <PageHeader
+        title="Not so serious version of my biography"
+        summary="My first browser was Netscape Navigator. I was there when the web was new, strange and weird and I fell in love with it right away."
+      />
 
-      <div className="c-page__body u-container u-grid">
+      <div className="c-page__body">
         <Image className="c-page__image u-rounded" width={500} height={500} src="/images/profile-image-lg-bw.png" alt="Zoran Zlokapa profile image" />
 
         <div className="c-page__content">

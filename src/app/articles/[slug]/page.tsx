@@ -4,6 +4,7 @@ import { getContentBySlug } from "@/lib/content";
 import EntryContent from "@/components/EntryContent";
 import { PageProps } from "@/lib/types";
 import { siteMeta, siteUrl } from "@/lib/siteMeta";
+import PageHeader from "@/partials/PageHeader";
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -54,27 +55,17 @@ export default async function ArticlePage({ params }: PageProps) {
   }
 
   return (
-    <article className={`c-page c-page--article ${articleClassName}`}>
-      <header className="c-page__header">
-        <div className="u-container">
-          <h1 className="c-page__title">{article.meta.title}</h1>
+    <article className={`c-page c-page--article u-grid ${articleClassName}`}>
+      <PageHeader
+        title={article.meta.title}
+        date={article.meta.date}
+        summary={article.meta.summary} 
+      />
 
-          <p className="c-page__date">
-            {new Date(article.meta.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-
-          <div className="c-page__summary">
-            {article.meta.summary && <p>{article.meta.summary}</p>}
-          </div>
-        </div>
-      </header>
-
-      <div className="c-page__body u-grid">
+      <div className="c-page__body">
         <EntryContent contentString={article.content} />
+
+        <p>Have something to add or comment? Feel free to <a href={`mailto:${siteMeta.email}`} title="Email">email me</a> or write me on <a href={siteMeta.blueskyUrl} title="Bluesky">Bluesky</a>.</p>
       </div>
     </article>
   );

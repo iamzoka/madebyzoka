@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getBlogsByCategory } from "@/lib/blogroll";
 import { BlogLink } from "@/lib/types";
 import ContentAlert from "@/partials/ContentAlert";
+import PageHeader from "@/partials/PageHeader";
 
 export const metadata: Metadata = {
   title: "Blogroll",
@@ -28,23 +29,14 @@ export default async function Page() {
   };
 
   return (
-    <div className="c-page c-page--blogroll">
-      <header className="c-page__header">
-        <div className="u-container">
-          <h1 className='c-page__title'>Blogroll</h1>
-
-          <div className="c-page__summary">
-            <p>There are so many awesome people out there doing some really great stuff. Heck, I grew up reading some of these blogs.</p>
-          </div>
-        </div>
-      </header>
+    <article className="c-page c-page--single c-page--blogroll u-grid">
+      <PageHeader
+        title="Blogroll"
+        summary="There are so many awesome people out there doing some really great stuff. Heck, I grew up reading some of these blogs."
+      />
 
       <div className="c-page__body">
-        <div className="u-container">
-          <ContentAlert />
-        </div>
-
-        <div className="u-container u-grid">
+        <div className="u-container u-subgrid">
           <div className="u-grid--half">
             <h2>Writing</h2>
             {renderBlogList(writingBlogs)}
@@ -71,6 +63,6 @@ export default async function Page() {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

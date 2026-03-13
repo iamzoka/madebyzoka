@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { getAllContent } from "@/lib/content";
 import { summarizeText, transformDate } from "@/lib/utils";
-import EntryContent from "@/components/EntryContent";
 import Link from "next/link";
 
 export default async function Page() {
@@ -39,7 +38,7 @@ export default async function Page() {
             <ul className="c-headlines">
               {limitedArticles.map((article) => (
                 <li key={article.slug}>
-                  <h3><a href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</a></h3>
+                  <h3><Link href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</Link></h3>
                   <p className="c-date-line"><small>{transformDate(article.meta.date)}</small></p>
                   <p>{article.meta.summary}</p>
                 </li>
@@ -54,11 +53,12 @@ export default async function Page() {
               {limitedNotes.map((note) => (
                 <li key={note.slug}>
                   <h6>
-                    <a href={`/notes/${note.slug}`} title={transformDate(note.meta.date)}>
+                    <Link href={`/notes/${note.slug}`} title={transformDate(note.meta.date)}>
                       {transformDate(note.meta.date)}
-                    </a>
+                    </Link>
                   </h6>
-                  <EntryContent contentString={summarizeText(note.meta.summary)} />
+
+                  <p>{summarizeText(note.meta.summary)}</p>
                 </li>
               ))}
             </ul>

@@ -4,6 +4,7 @@ import { getContentBySlug } from "@/lib/content";
 import EntryContent from "@/components/EntryContent";
 import { PageProps } from "@/lib/types";
 import { siteMeta, siteUrl } from "@/lib/siteMeta";
+import ArticleHeader from "@/partials/PageHeader";
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -54,22 +55,13 @@ export default async function NotePage({ params }: PageProps) {
   }
 
   return (
-    <article className={`c-page c-page--note ${noteClassName}`}>
-      <header className="c-page__header">
-        <div className="u-container">
-          <h1 className="c-page__title">{note.meta.title}</h1>
+    <article className={`c-page c-page--note u-grid ${noteClassName}`}>
+      <ArticleHeader
+        title={note.meta.title}
+        date={note.meta.date}
+      />
 
-          <p className="c-page__date">
-            {new Date(note.meta.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
-      </header>
-
-      <div className="c-page__body u-grid">
+      <div className="c-page__body">
         <EntryContent contentString={note.content} />
       </div>
     </article>

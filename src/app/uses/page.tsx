@@ -1,3 +1,4 @@
+import PageHeader from "@/partials/PageHeader";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,24 +7,18 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <div className="c-page c-page--uses">
-      <header className="c-page__header">
-        <div className="u-container">
-          <h1 className='c-page__title'>My everyday work setup</h1>
-
-          <div className="c-page__summary">
-            <p>This is what I use to build things and to live my life. To say it&apos;s minimalistic would be an understatement.</p>
-          </div>
-        </div>
-      </header>
+    <article className="c-page c-page--single c-page--uses u-grid">
+      <PageHeader
+        title="My everyday work setup"
+        summary="This is what I use to build things and to live my life. To say it's minimalistic would be an understatement."
+      />
 
       <div className="c-page__body">
         <div className="u-container">
           <h2>Hardware</h2>
 
           <p>2021 MacBook Pro 14-inch.</p>
-          <p>That&apos;s it. No external monitor, no external keyboard, no external mouse. Just the laptop. 
-            That&apos;s all I need.</p>
+          <p>That&apos;s it. No external monitor, no external keyboard, no external mouse. Just the laptop. That&apos;s all I need.</p>
           <p>I use an iPhone 16 Pro Max and also I have some old iPad tucked away somewhere.</p>
           <p>You think I&apos;m a Apple fanboy, right?</p>
 
@@ -63,10 +58,9 @@ export default async function Page() {
             </li>
           </ul>
 
-          <p>I&apos;m not trying to keep it simple, but this is all I need. I&apos;m so used to using some of them that 
-            I think I couldn&apos;t function without them, but they&apos;re just tools and I do switch them every now and then.</p>
+          <p>I&apos;m not trying to keep it simple, but this is all I need. I&apos;m so used to using some of them that I think I couldn&apos;t function without them, but they&apos;re just tools and I do switch them every now and then.</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
