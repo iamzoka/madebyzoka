@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getAllContent } from "@/lib/content";
 import { summarizeText, transformDate } from "@/lib/utils";
 import Link from "next/link";
+import EntryContent from "@/components/EntryContent";
 
 export default async function Page() {
   const articles = getAllContent('articles');
@@ -52,7 +53,7 @@ export default async function Page() {
                   </Link>
                 </h6>
 
-                <p>{summarizeText(note.meta.summary)}</p>
+                <EntryContent contentString={summarizeText(note.content)} />
               </li>
             ))}
           </ul>
