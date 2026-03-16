@@ -22,7 +22,7 @@ export function getAllContent(type: ContentType): ContentItem[] {
         slug: f.replace(/\.mdx$/, ''),
         meta: {
           ...data as ContentMeta,
-          summary: summarizeText(content),
+          summary: data.summary ? data.summary : summarizeText(content),
         },
         content
       };

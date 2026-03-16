@@ -11,13 +11,16 @@ function stripMarkup(content: string): string {
   // Remove fenced code blocks ```...```
   text = text.replace(/```[\s\S]*?```/g, '');
 
+  // Remove markdown headings, e.g. "# Title", "## Title"
+  text = text.replace(/^\s{0,3}#{1,6}\s+.*$/gm, '');
+
   // Replace images ![alt](url) with their alt text
   text = text.replace(/!\[([^\]]*)\]\([^)]+\)/g, (_, alt: string) => alt || '');
 
   // Remove inline code `code`
   text = text.replace(/`([^`]+)`/g, '$1');
 
-  // Strip HTML tags
+  // Strip remaining HTML tags (in case markdown has been converted)
   text = text.replace(/<[^>]+>/g, '');
 
   // Collapse whitespace
