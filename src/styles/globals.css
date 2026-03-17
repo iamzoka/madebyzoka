@@ -200,11 +200,13 @@
 
   @keyframes fade-up {
     from {
-      opacity: .25;
+      opacity: 0;
+      filter: blur(5px);
       transform: translateY(30%);
     }
     to {
       opacity: 1;
+      filter: blur(0);
       transform: translateY(0);
     }
   }
@@ -323,15 +325,55 @@
     margin-block-end: var(--space-xl);
   }
 
+  .c-site-logo--footer {
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 15rem;
+    margin-block-start: var(--space-xl);
+    margin-block-end: 0;
+    padding-block-start: var(--space-xl);
+    line-height: 1;
+    font-size: clamp(6rem, 15rem + 5vw, 21rem);
+    font-weight: 900;
+    font-family: var(--font-heading);
+    color: light-dark(var(--color-gray-100), var(--color-gray-600));
+  }
+
+  .c-site-footer__content {
+    padding-block: var(--space-xl);
+    background-color: light-dark(var(--color-gray-100), var(--color-gray-600));
+  }
+
+  .c-footer-copy {
+    grid-column: 2 / 14;
+    font-size: var(--step--1);
+    margin-block-end: 0;
+
+    @media (min-width: 1025px) {
+      grid-column: 2 / 7;
+    }
+  }
+  
+  .c-site-nav {
+    flex-wrap: wrap;
+    grid-column: 2 / 14;
+    
+    @media (min-width: 1025px) {
+      justify-content: flex-end;
+      grid-column: 8 / 14;
+    }
+  }
+
   .c-section--intro {
     align-items: center;
-    min-height: 90vh;
+    min-height: 100vh;
 
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
         animation: fade-out-up linear both;
         animation-timeline: view();
-        animation-range: exit;
+        animation-range: exit 10%;
       }
     }
 
@@ -366,7 +408,7 @@
       @supports (animation-timeline: view()) {
         animation: fade-up linear both;
         animation-timeline: view();
-        animation-range: entry;
+        animation-range: entry cover 25%;
       }
     }
 
@@ -420,7 +462,7 @@
     grid-template-columns: subgrid;
     grid-template-rows: 1fr repeat(3, minmax(0, max-content)) 1fr;
     grid-column: 1 / -1;
-    min-height: 75vh;
+    min-height: 100vh;
     padding-block: var(--space-xl);
   
     @media (prefers-reduced-motion: no-preference) {
@@ -473,14 +515,6 @@
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
-
-    @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: view()) {
-        animation: fade-up linear both;
-        animation-timeline: view();
-        animation-range: entry;
-      }  
-    }  
 
     figure {
       grid-column: 2 / 14;
@@ -595,6 +629,20 @@
       }
     }
   }
+
+  .c-page--article {
+    .c-page__body {
+      > * {
+        @media (prefers-reduced-motion: no-preference) {
+          @supports (animation-timeline: view()) {
+            animation: fade-up linear both;
+            animation-timeline: view();
+            animation-range: entry 100% contain 20%;
+          }  
+        }  
+      }
+    }
+  }
 }
 
 @layer layout {
@@ -633,44 +681,13 @@
     }
   }
 
-  .c-site-logo--footer {
-    text-align: center;
-    justify-content: center;
-    overflow: hidden;
-    height: 15rem;
-    margin-block-start: var(--space-xl);
-    margin-block-end: 0;
-    padding-block-start: var(--space-xl);
-    line-height: 1;
-    font-size: clamp(6rem, 15rem + 5vw, 21rem);
-    font-weight: 900;
-    font-family: var(--font-heading);
-    color: light-dark(var(--color-gray-100), var(--color-gray-600));
-  }
-
   .l-site-footer {
     align-items: center;
-    padding-block: var(--space-xl);
-    background-color: light-dark(var(--color-gray-100), var(--color-gray-600));
 
-    .c-footer-copy {
-      grid-column: 2 / 14;
-      font-size: var(--step--1);
-      margin-block-end: 0;
-
-      @media (min-width: 1025px) {
-        grid-column: 2 / 7;
-      }
-    }
-    
-    .c-site-nav {
-      flex-wrap: wrap;
-      grid-column: 2 / 14;
-      
-      @media (min-width: 1025px) {
-        justify-content: flex-end;
-        grid-column: 8 / 14;
-      }
+    @supports (animation-timeline: view()) {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry;
     }
   }
 }
