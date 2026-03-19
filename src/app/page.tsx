@@ -40,7 +40,7 @@ export default async function Page() {
             ))}
           </ul>
 
-          {articles.length > 5 && <p><Link href="/articles">View all articles</Link></p>}
+          {articles.length > 5 && <p><Link href="/articles"><strong>View all articles</strong></Link></p>}
         </div>
 
         <div className="c-section-notes-list">
@@ -58,7 +58,7 @@ export default async function Page() {
             ))}
           </ul>
 
-          {notes.length > 5 && <p><Link href="/notes">View all notes</Link></p>}
+          {notes.length > 5 && <p><Link href="/notes"><strong>View all notes</strong></Link></p>}
         </div>
       </section>
     </>
