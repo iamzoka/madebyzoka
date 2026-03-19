@@ -14,7 +14,7 @@ export default async function Page() {
     <article className="c-page c-page--single c-page--articles-list u-grid">
       <PageHeader
         title="Long-ish form Articles"
-        summary="I write down some things that I'm thinking about, sometimes about software, sometimes about life. It's mostly for self-documenting purposes and I hope you find it interesting as well."
+        summary="I write down some things that I'm thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes."
       />
 
       <div className="c-page__body">

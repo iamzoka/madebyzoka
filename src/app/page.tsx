@@ -24,12 +24,12 @@ export default async function Page() {
       </section>
 
       <section className="c-section c-section--articles u-grid">
-        <header className="c-section__header">
-          <h2>Articles &amp; Thoughts</h2>
-          <p>I write down some things that I&apos;m thinking about, sometimes about software, sometimes about life. It&apos;s mostly for self-documenting purposes but I think you might find it interesting as well.</p>
-        </header>
-
         <div className="c-section-articles-list">
+          <header className="c-section__header">
+            <h2>Articles &amp; Thoughts</h2>
+            <p>I write down some things that I&apos;m thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes.</p>
+          </header>
+
           <ul className="c-headlines">
             {limitedArticles.map((article) => (
               <li key={article.slug}>
