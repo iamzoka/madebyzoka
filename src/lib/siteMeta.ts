@@ -10,13 +10,8 @@ export const siteMeta = {
   ogImageHeight: 1080,
   locale: "en_US",
   feed: {
-    title: "Zoran Zlokapa – Articles & Notes",
-    description: "Articles and notes by Zoran Zlokapa about software and life.",
-    feedPath: "/rss.xml",
-  },
-  articles: {
-    title: "Zoran Zlokapa – Articles",
-    description: "Long-ish form articles by Zoran Zlokapa about software and life.",
+    title: "Zoran Zlokapa, builder of stuff for the Internet",
+    description: "Observations and ideas about software design and development.",
     feedPath: "/rss.xml",
   },
   githubUrl: "https://github.com/iamzoka",
