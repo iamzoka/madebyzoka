@@ -298,10 +298,10 @@
   .c-card__image {
     object-fit: cover;
     border-radius: var(--space);
-    rotate: 5deg;
+    rotate: 3deg;
     transform-origin: right bottom;
 
-    --shadow-color: 0deg 20% 11%;
+    --shadow-color: light-dark(0deg 4% 66%, 0deg 20% 11%);
     --shadow-elevation-high:
     0.3px 0.3px 0.5px hsl(var(--shadow-color) / 0.39),
     2.7px 2.7px 4.3px -0.8px hsl(var(--shadow-color) / 0.39),
@@ -312,7 +312,7 @@
     6.1px 6.2px 6.5px -3.3px hsl(var(--shadow-color) / 0.39),
     19.7px 20.2px 21.2px -5px hsl(var(--shadow-color) / 0.2);
 
-    box-shadow: var(--shadow-elevation-high);
+    box-shadow: light-dark(var(--shadow-elevation-high), var(--shadow-elevation-medium));
 
     @media (min-width: 1025px) {
       width: 50%;
