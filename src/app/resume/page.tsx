@@ -11,7 +11,7 @@ export default async function Page() {
       <article className="c-page c-page--resume u-grid">
         <header className="c-page__header">
           <h1 className="c-page__title">
-            Serious Resume of <strong>Web developer Zoran Zlokapa</strong>
+            Serious Resume of <strong>Frontend developer Zoran Zlokapa</strong>
           </h1>
 
           <ul className="c-contact-info">
@@ -28,6 +28,10 @@ export default async function Page() {
               <a href={siteMeta.linkedinUrl} title="LinkedIn">LinkedIn</a>
             </li>
           </ul>
+
+          <div className="c-page__summary">
+            <p>I&apos;m a Frontend developer who specializes in delivering enterprise-scale applications, focused on performance and maintainability. Expert in React, TypeScript, and modern UI systems, with a strong emphasis on accessibility, usability and user experience.</p>
+          </div>
        </header>
 
         <div className="c-page__body">
@@ -36,13 +40,13 @@ export default async function Page() {
 
             <div className="c-experience-list">
               <h3>Software Engineer, EPAM Systems</h3>
-              <p className="c-date-line">2022 - Now</p>
+              <p className="c-date-line">2022 - Now / Remote</p>
               <p>Working on development of large-scale web applications, ensuring high performance and maintainability. 
                 Designing and implementing complex UI solutions using React, TypeScript, Tailwind and other UI libraries. Driving the adoption 
                 of best practices in accessibility and usability, making applications inclusive.</p>
 
                 <h3>Web Developer, Vivify Ideas</h3>
-                <p className="c-date-line">2014 - 2022</p>
+                <p className="c-date-line">2014 - 2022 / Hybrid</p>
                 <p>I developed and maintained enterprise-grade applications using React, ReactNative, Vue and other frameworks. Built 
                   and maintained scalable design systems, improving development efficiency across teams. 
                   Spearheaded frontend performance optimizations, reducing load times and improving user experience. Worked closely 
@@ -50,12 +54,12 @@ export default async function Page() {
                   development, taking ownership from concept to deployment.</p>
 
                 <h3>UX Designer, Media Matrix</h3>
-                <p className="c-date-line">2011 - 2014</p>
+                <p className="c-date-line">2011 - 2014 / On-site</p>
                 <p>Designed and optimized user interfaces for high-traffic websites, improving engagement and retention. 
                   Conducted usability testing and applied accessibility improvements for a better user experience.</p>
 
                 <h3>Freelance web designer & developer</h3>
-                <p className="c-date-line">2003 - 2011</p>
+                <p className="c-date-line">2003 - 2011 / Hybrid</p>
                 <p>I&apos;ve been designing and developing company web sites using WordPress. 
                   I&apos;ve built custom WordPress themes from scratch using HTML, CSS and jQuery. 
                   Built and maintained web applications with focus on usability and design consistency. 
