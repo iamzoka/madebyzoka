@@ -1,4 +1,4 @@
-export type ContentType = 'articles' | 'notes';
+export type ContentType = 'articles' | 'notes' | 'books';
 
 export interface ContentMeta {
   title: string;
@@ -26,3 +26,12 @@ export type BlogLink = {
   url: string;
 };
 
+export type BookMeta = {
+  isbn?: string;
+  title: string;
+  author?: string;
+  yearPublished?: number;
+  yearRead?: number;
+  rating?: number;
+  pageCount?: number;
+};

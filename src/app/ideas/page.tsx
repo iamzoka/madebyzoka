@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PageHeader from "@/partials/PageHeader";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Ideas",
@@ -18,7 +19,7 @@ export default async function Page() {
         <div className="c-projects-list c-cards-list">
           <div className="c-project c-card c-card--horizontal">
             <div className="c-card__content">
-              <h2>Book Shelf</h2>
+              <h2><Link href="/bookshelf" title="Book Shelf">Book Shelf</Link></h2>
               <p>Couple of years ago, I decided to start reading more. After a few books I wanted to start 
                 keeping track of what I read and what I wanted to read next.</p>
               <p>It started with a simple text file, but once I passed 10 books it became a bit cumbersome. 
