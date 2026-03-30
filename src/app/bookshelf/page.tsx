@@ -41,7 +41,7 @@ export default async function Page() {
       <>
         {await hasOpenLibraryCover(meta.isbn) ? (
           <figure className="c-book-list__cover">
-            <img src={`${OPEN_LIBRARY_COVERS_URL}/${meta.isbn}-L.jpg`} alt={`${meta.title} - ${meta.author}`} title={`${meta.title} - ${meta.author}`} />
+            <img src={`${OPEN_LIBRARY_COVERS_URL}/${meta.isbn}-L.jpg`} loading="lazy" alt={`${meta.title} - ${meta.author}`} title={`${meta.title} - ${meta.author}`} />
           </figure>
         ) : (
           <div className="c-book-list__cover is-text-only">
@@ -89,6 +89,10 @@ export default async function Page() {
             <li>
               <p className="c-books-stats__label">Total pages read</p>
               <p className="c-books-stats__value">{books.reduce((acc, book) => acc + ((book.meta as BookMeta).pageCount ?? 0), 0)}</p>
+            </li>
+            <li>
+              <p className="c-books-stats__label">Time spent reading</p>
+              <p className="c-books-stats__value">1.852 hours</p>
             </li>
           </ul>
         </section>
