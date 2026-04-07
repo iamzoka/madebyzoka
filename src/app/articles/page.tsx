@@ -11,7 +11,7 @@ export default async function Page() {
   const articles = getAllContent('articles');
 
   return (
-    <article className="c-page c-page--single c-page--articles-list u-grid">
+    <article className="c-page c-page--single c-page--articles u-grid">
       <PageHeader
         title="Long-ish form Articles"
         summary="I write down some things that I'm thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes."
@@ -35,7 +35,7 @@ export default async function Page() {
                 </small>
               </p>
 
-              <p>{article.meta.summary}</p>
+              <p className="c-article-summary">{article.meta.summary}</p>
             </li>
           ))}
         </ul>

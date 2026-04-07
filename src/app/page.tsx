@@ -24,7 +24,7 @@ export default async function Page() {
       </section>
 
       <section className="c-section c-section--articles u-grid">
-        <div className="c-section-articles-list">
+        <div className="c-articles-list">
           <header className="c-section__header">
             <h2>Articles &amp; Thoughts</h2>
             <p>I write down some things that I&apos;m thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes.</p>
@@ -33,8 +33,12 @@ export default async function Page() {
           <ul className="c-headlines">
             {limitedArticles.map((article) => (
               <li key={article.slug}>
-                <h3><Link href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</Link></h3>
-                <p className="c-date-line"><small>{transformDate(article.meta.date)}</small></p>
+                <h3>
+                  <Link href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</Link>
+                </h3>
+                <p className="c-date-line">
+                  <small>{transformDate(article.meta.date)}</small>
+                </p>
                 <p>{article.meta.summary}</p>
               </li>
             ))}
@@ -43,7 +47,7 @@ export default async function Page() {
           {articles.length > 5 && <p><Link href="/articles"><strong>View all articles</strong></Link></p>}
         </div>
 
-        <div className="c-section-notes-list">
+        <div className="c-notes-list">
           <ul className="c-headlines">
             {limitedNotes.map((note) => (
               <li key={note.slug}>
