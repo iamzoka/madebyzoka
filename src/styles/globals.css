@@ -136,7 +136,7 @@
     font-size: var(--step-0);
   }
   
-  p, li, ul, ol, figure {
+  p, li, ul, ol, figure, iframe {
     text-wrap: pretty;
     font-size: var(--step-0);
 
@@ -698,7 +698,7 @@
 
   .c-page--article {
     .c-page__body {
-      > * {
+      > *:not(iframe) {
         @media (prefers-reduced-motion: no-preference) {
           @supports (animation-timeline: view()) {
             animation: fade-up linear both;
@@ -706,6 +706,12 @@
             animation-range: entry 100% contain 20%;
           }  
         }  
+      }
+
+      iframe {
+        grid-column: 1 / -1;
+        aspect-ratio: 16 / 9;
+        width: 100%;
       }
     }
   }
