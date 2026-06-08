@@ -27,7 +27,7 @@ export type BlogLink = {
 };
 
 export type BookMeta = {
-  isbn?: string;
+  isbn?: string | number | null
   title: string;
   author?: string;
   yearPublished?: number;
