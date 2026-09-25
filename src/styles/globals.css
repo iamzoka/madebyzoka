@@ -389,7 +389,9 @@
 
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
-        animation: fade-out-up linear both;
+        animation-name: fade-out-up;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: view();
         animation-range: exit 10%;
       }
@@ -424,7 +426,9 @@
   .c-section--articles {
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
-        animation: fade-up linear both;
+        animation-name: fade-up;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: view();
         animation-range: entry cover 25%;
       }
@@ -480,7 +484,9 @@
   
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
-        animation: fade-out-up linear both;
+        animation-name: fade-out-up;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: view();
         animation-range: exit;
       }
@@ -701,7 +707,9 @@
       > *:not(iframe) {
         @media (prefers-reduced-motion: no-preference) {
           @supports (animation-timeline: view()) {
-            animation: fade-up linear both;
+            animation-name: fade-up;
+            animation-timing-function: linear;
+            animation-fill-mode: both;
             animation-timeline: view();
             animation-range: entry 100% contain 20%;
           }  
@@ -721,7 +729,9 @@
       h2, li {
         @media (prefers-reduced-motion: no-preference) {
           @supports (animation-timeline: view()) {
-            animation: fade-up linear both;
+            animation-name: fade-up;
+            animation-timing-function: linear;
+            animation-fill-mode: both;
             animation-timeline: view();
             animation-range: entry 100% contain 20%;
           }  
@@ -872,7 +882,9 @@
     align-items: center;
 
     @supports (animation-timeline: view()) {
-      animation: fade-up linear both;
+      animation-name: fade-up;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: entry;
     }
