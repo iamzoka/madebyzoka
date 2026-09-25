@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getAllContent } from "@/lib/content";
+import { renderMarkdown } from "@/lib/markdown";
+import { summarizeText, transformDate } from "@/lib/utils";
+import profileImage from "@/assets/images/profile-image-lg-bw.png";
+
+const articles = await getAllContent("articles");
+const notes = await getAllContent("notes");
+
+const limitedArticles = articles.slice(0, 5);
+const limitedNotes = await Promise.all(
+  notes.slice(0, 5).map(async (note) => ({
+    ...note,
+    html: await renderMarkdown(summarizeText(note.content)),
+  })),
+);
+---
+
+<BaseLayout>
+  <section class="c-section c-section--intro u-grid">
+    <Image class="c-section__image u-rounded" width={500} height={500} src={profileImage} alt="Zoran Zlokapa profile image" densities={[1, 2]} />
+
+    <div class="c-section__content">
+      <h1>Hey there 👋 I am Zoran, builder of software, explorer of interfaces & code composer.</h1>
+      <p>I'm a proud husband and father, eater of books and a passionate motorcyclist.</p>
+      <p>Oh yeah, I also run a <a href="https://refreshd.net" title="Refresh'd">small development agency</a>.</p>
+    </div>
+  </section>
+
+  <section class="c-section c-section--articles u-grid">
+    <div class="c-articles-list">
+      <header class="c-section__header">
+        <h2>Articles &amp; Thoughts</h2>
+        <p>I write down some things that I'm thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes.</p>
+      </header>
+
+      <ul class="c-headlines">
+        {limitedArticles.map((article) => (
+          <li>
+            <h3>
+              <a href={`/articles/${article.slug}`} title={article.meta.title}>{article.meta.title}</a>
+            </h3>
+            <p class="c-date-line">
+              <small>{transformDate(article.meta.date)}</small>
+            </p>
+            <p>{article.meta.summary}</p>
+          </li>
+        ))}
+      </ul>
+
+      {articles.length > 5 && <p><a href="/articles"><strong>View all articles</strong></a></p>}
+    </div>
+
+    <div class="c-notes-list">
+      <ul class="c-headlines">
+        {limitedNotes.map((note) => (
+          <li>
+            <h6>
+              <a href={`/notes/${note.slug}`} title={transformDate(note.meta.date)}>
+                {transformDate(note.meta.date)}
+              </a>
+            </h6>
+
+            <Fragment set:html={note.html} />
+          </li>
+        ))}
+      </ul>
+
+      {notes.length > 5 && <p><a href="/notes"><strong>View all notes</strong></a></p>}
+    </div>
+  </section>
+</BaseLayout>

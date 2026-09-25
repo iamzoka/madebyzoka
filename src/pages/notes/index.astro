@@ -1,0 +1,38 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getAllContent } from "@/lib/content";
+import { transformDate } from "@/lib/utils";
+
+const notes = await Promise.all(
+  (await getAllContent("notes")).map(async (note) => ({
+    ...note,
+    Content: (await render(note.entry)).Content,
+  })),
+);
+---
+
+<BaseLayout title="Notes">
+  <article class="c-page c-page--single c-page--notes-list u-grid">
+    <PageHeader
+      title="Short notes"
+      summary="Quick thoughts, observations, and snippets that could someday become a full article, but are worth sharing in the meantime."
+    />
+
+    <div class="c-page__body">
+      <ul class="c-headlines">
+        {notes.map(({ slug, meta, Content }) => (
+          <li>
+            <h4>
+              <a href={`/notes/${slug}`} title={transformDate(meta.date)}>
+                {transformDate(meta.date)}
+              </a>
+            </h4>
+            <Content />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </article>
+</BaseLayout>

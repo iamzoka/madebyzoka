@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import bookshelfImage from "@/assets/images/bookshelf-app-temp-thumb.jpg";
+import lawnscapingImage from "@/assets/images/lawnscaping-biz-temp-thumb.jpg";
+import refreshdImage from "@/assets/images/refreshd-biz-temp-thumb.jpg";
+---
+
+<BaseLayout title="Ideas">
+  <article class="c-page c-page--single c-page--ideas u-grid">
+    <PageHeader
+      title="Ideas & projects"
+      summary="Showcase of the projects and ideas I'm always thinking about and tinkering with. The guideline is simple: have an idea, share it, build it or talk about it. Like they say, ideas are cheap, execution is everything. And if I don't have time to do it, maybe somebody else will."
+    />
+
+    <div class="c-page__body">
+      <div class="c-projects-list c-cards-list">
+        <div class="c-project c-card c-card--horizontal">
+          <div class="c-card__content">
+            <h2><a href="/bookshelf" title="Book Shelf">Book Shelf</a></h2>
+            <p>Couple of years ago, I decided to start reading more. After a few books I wanted to start 
+              keeping track of what I read and what I wanted to read next.</p>
+            <p>It started with a simple text file, but once I passed 10 books it became a bit cumbersome. 
+              I want to create a something a bit more user-friendly.</p>
+            <p>I know, I know, there are a lot of apps out there that do this, but this is my take on it.</p>
+          </div>
+
+          <Image class="c-card__image" width={500} src={bookshelfImage} alt="Book Shelf" densities={[1, 2]} />
+        </div>
+
+        <div class="c-project c-card c-card--horizontal">
+          <div class="c-card__content">
+            <h2>Lawnscaping business</h2>
+            <p>Yes, I plan on starting a lawnscaping business. I&apos;m not sure when, but I&apos;m sure it will happen.</p>
+            <p>Something to do to get away from computers.</p>
+          </div>
+
+          <Image class="c-card__image" width={500} src={lawnscapingImage} alt="Lawnscaping business" densities={[1, 2]} />
+        </div>
+
+        <div class="c-project c-card c-card--horizontal">
+          <div class="c-card__content">                
+            <h2>Web development studio</h2>
+            <p>Web sites aren&apos;t supposed to be complicated. Business around them shouldn&apos;t be complicated either. Complex, maybe, but not complicated.</p>
+            <p>I&apos;m trying to create something simple and straightforward.</p>
+          </div>
+
+          <Image class="c-card__image" width={500} src={refreshdImage} alt="Refresh'd studio" densities={[1, 2]} />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

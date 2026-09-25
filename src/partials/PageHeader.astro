@@ -1,0 +1,25 @@
+---
+import { transformDate } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  date?: string | Date;
+  summary?: string;
+}
+
+const { title, date, summary } = Astro.props;
+---
+
+<header class="c-page__header">
+  <h1 class="c-page__title">{title}</h1>
+
+  {date && (
+    <p class="c-page__date">{transformDate(date)}</p>
+  )}
+
+  {summary && (
+    <div class="c-page__summary">
+      <p>{summary}</p>
+    </div>
+  )}
+</header>

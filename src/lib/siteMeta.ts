@@ -5,7 +5,7 @@ export const siteMeta = {
   email: "hi@zlokapa.com",
   title: "Zoran Zlokapa, builder of stuff for the Internet",
   description: "Personal web site of software builder Zoran Zlokapa",
-  ogImage: "/images/zoran-zlokapa-og-photo.png",
+  ogImage: "/images/zoran-zlokapa-og-photo.jpg",
   ogImageWidth: 1350,
   ogImageHeight: 1080,
   locale: "en_US",

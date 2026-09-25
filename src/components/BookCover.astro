@@ -1,0 +1,38 @@
+---
+const OPEN_LIBRARY_COVERS_URL = "https://covers.openlibrary.org/b/isbn";
+
+interface Props {
+  isbn?: string | number | null;
+  title: string;
+  author?: string | null;
+  yearPublished?: number | null;
+}
+
+const { isbn, title, author, yearPublished } = Astro.props;
+const normalizedIsbn = isbn != null ? String(isbn).trim() : "";
+const label = `${title} - ${author}`;
+
+// No client JS: if the cover fails to load, the inline handler swaps the figure for the text-only cover.
+// default=false makes Open Library return a 404 for missing covers instead of a blank 1x1 image.
+const onCoverError = "this.parentElement.nextElementSibling.hidden=false;this.parentElement.remove()";
+---
+
+{normalizedIsbn && (
+  <figure class="c-book-list__cover">
+    <img
+      src={`${OPEN_LIBRARY_COVERS_URL}/${normalizedIsbn}-L.jpg?default=false`}
+      width="300"
+      height="450"
+      loading="lazy"
+      decoding="async"
+      alt={label}
+      title={label}
+      onerror={onCoverError}
+    />
+  </figure>
+)}
+<div class="c-book-list__cover is-text-only" hidden={normalizedIsbn ? true : undefined}>
+  <h3>{title}</h3>
+  <p>{author}</p>
+  <p>{yearPublished}</p>
+</div>
