@@ -1,4 +1,4 @@
-export const transformDate = (date: string) =>
+export const transformDate = (date: string | Date) =>
   new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',

@@ -1,0 +1,21 @@
+---
+import { siteMeta } from "@/lib/siteMeta";
+---
+
+<footer class="l-site-footer">
+  <p class="c-site-logo c-site-logo--footer">Zlokapa</p>
+
+  <div class="c-site-footer__content u-grid">
+    <p class="c-footer-copy">Made by me, personally.</p>
+
+    <nav class="c-site-nav">
+      <a href="/about" title="About">About</a>
+      <a href="/uses" title="Uses">Uses</a>
+      <a href="/blogroll" title="Blogroll">Blogroll</a>
+      <a href="/rss.xml" title="RSS feed for articles" data-astro-prefetch="false">RSS</a>
+      <a href={siteMeta.githubUrl} title="GitHub">GitHub</a>
+      <a href={siteMeta.linkedinUrl} title="LinkedIn">LinkedIn</a>
+      <a href={siteMeta.blueskyUrl} title="Bluesky">Bluesky</a>
+    </nav>
+  </div>
+</footer>

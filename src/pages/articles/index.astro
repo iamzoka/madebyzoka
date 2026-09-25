@@ -1,0 +1,39 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getAllContent } from "@/lib/content";
+import { transformDate } from "@/lib/utils";
+
+const articles = await getAllContent("articles");
+---
+
+<BaseLayout title="Articles">
+  <article class="c-page c-page--single c-page--articles u-grid">
+    <PageHeader
+      title="Long-ish form Articles"
+      summary="I write down some things that I'm thinking about, sometimes about software, sometimes about life. Mostly for documenting purposes."
+    />
+
+    <div class="c-page__body">
+      <ul class="c-headlines">
+        {articles.map((article) => (
+          <li>
+            <h3>
+              <a
+                href={`/articles/${article.slug}`}
+                title={article.meta.title}
+              >
+                {article.meta.title}
+              </a>
+            </h3>
+            <p class="c-date-line">
+              <small>{transformDate(article.meta.date)}</small>
+            </p>
+
+            <p class="c-article-summary">{article.meta.summary}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </article>
+</BaseLayout>

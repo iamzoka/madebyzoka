@@ -1,0 +1,43 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getAllContent } from "@/lib/content";
+import { siteUrl } from "@/lib/siteMeta";
+import type { ContentItem } from "@/lib/types";
+
+export async function getStaticPaths() {
+  const notes = await getAllContent("notes");
+
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props as { note: ContentItem };
+const { Content } = await render(note.entry);
+const noteClassName = note.meta.customClass ? `c-page--note-${note.meta.customClass}` : "";
+---
+
+<BaseLayout
+  title={note.meta.title}
+  description={note.meta.title}
+  article={{
+    url: new URL(`/notes/${note.slug}`, siteUrl).toString(),
+    publishedTime: note.meta.date,
+    tags: note.meta.tags,
+    imageAlt: note.meta.title,
+  }}
+>
+  <article class={`c-page c-page--note u-grid ${noteClassName}`}>
+    <PageHeader
+      title={note.meta.title}
+      date={note.meta.date}
+    />
+
+    <div class="c-page__body">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
