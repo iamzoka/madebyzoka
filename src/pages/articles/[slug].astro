@@ -1,0 +1,46 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getAllContent } from "@/lib/content";
+import { siteMeta, siteUrl } from "@/lib/siteMeta";
+import type { ContentItem } from "@/lib/types";
+
+export async function getStaticPaths() {
+  const articles = await getAllContent("articles");
+
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props as { article: ContentItem };
+const { Content } = await render(article.entry);
+const articleClassName = article.meta.customClass ? `c-page--article-${article.meta.customClass}` : "";
+---
+
+<BaseLayout
+  title={article.meta.title}
+  description={article.meta.summary}
+  article={{
+    url: new URL(`/articles/${article.slug}`, siteUrl).toString(),
+    publishedTime: article.meta.date,
+    tags: article.meta.tags,
+    imageAlt: article.meta.title,
+  }}
+>
+  <article class={`c-page c-page--article u-grid ${articleClassName}`}>
+    <PageHeader
+      title={article.meta.title}
+      date={article.meta.date}
+      summary={article.meta.summary}
+    />
+
+    <div class="c-page__body">
+      <Content />
+
+      <p>Have something to add or comment? Feel free to <a href={`mailto:${siteMeta.email}`} title="Email">email me</a> or write me on <a href={siteMeta.blueskyUrl} title="Bluesky">Bluesky</a>.</p>
+    </div>
+  </article>
+</BaseLayout>

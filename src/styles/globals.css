@@ -17,7 +17,7 @@
   --color-primary-active: oklch(from var(--color-orange-500) calc(l + 0.075) c h);
   --color-secondary: var(--color-blue-500);
 
-  --font-body: var(--font-roboto, sans-serif);
+  --font-body: Arial, "Helvetica Neue", Helvetica, "Liberation Sans", sans-serif;
   --font-heading: var(--font-noto-serif-display, serif);
 
   --space: 1rem;
@@ -783,6 +783,11 @@
       align-items: center;
       text-align: center;
       padding: var(--space-lg);
+    }
+
+    /* Text-only fallback stays hidden until its cover image fails to load */
+    &[hidden] {
+      display: none;
     }
   }
 

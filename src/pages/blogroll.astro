@@ -1,0 +1,40 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getBlogsByCategory } from "@/lib/blogroll";
+
+const sections = [
+  { title: "Writing", blogs: getBlogsByCategory("Writing") },
+  { title: "Magazines", blogs: getBlogsByCategory("Magazines") },
+  { title: "News", blogs: getBlogsByCategory("News") },
+  { title: "Inspiration", blogs: getBlogsByCategory("Design & Inspiration") },
+  { title: "Developers", blogs: getBlogsByCategory("Development") },
+];
+---
+
+<BaseLayout title="Blogroll">
+  <article class="c-page c-page--single c-page--blogroll u-grid">
+    <PageHeader
+      title="Blogroll"
+      summary="There are so many awesome people out there doing some really great stuff. Heck, I grew up reading some of these blogs."
+    />
+
+    <div class="c-page__body">
+      <div class="u-container u-subgrid">
+        {sections.map(({ title, blogs }) => (
+          <div class="u-grid--half">
+            <h2>{title}</h2>
+            <ul class="c-blogroll-list">
+              {blogs.map((blog) => (
+                <li class="c-blogroll__item">
+                  <p><strong><a href={blog.url} title={blog.title}>{blog.title}</a></strong></p>
+                  {blog.description && <p>{blog.description}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </article>
+</BaseLayout>

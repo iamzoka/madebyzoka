@@ -1,0 +1,33 @@
+---
+import "@/styles/globals.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import BaseHead, { type OpenGraphArticle } from "@/partials/BaseHead.astro";
+import SiteHeader from "@/partials/SiteHeader.astro";
+import SiteFooter from "@/partials/SiteFooter.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  article?: OpenGraphArticle;
+}
+
+const { title, description, article } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} article={article} />
+  </head>
+  <body>
+    <SiteHeader />
+
+    <main class="l-site-content">
+      <slot />
+    </main>
+
+    <SiteFooter />
+    <Analytics />
+    <SpeedInsights />
+  </body>
+</html>

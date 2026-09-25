@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+---
+
+<BaseLayout title="404: This page could not be found">
+  <article class="c-page c-page--single u-grid">
+    <PageHeader
+      title="404"
+      summary="This page could not be found."
+    />
+
+    <div class="c-page__body">
+      <p><a href="/">Back to the homepage</a></p>
+    </div>
+  </article>
+</BaseLayout>
