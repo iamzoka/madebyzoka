@@ -110,6 +110,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
+    font-weight: 400;
   }
 
   h1 {
@@ -221,17 +222,12 @@
 
 @layer components {
   .c-site-logo {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: var(--step-2);
     color: var(--color-foreground);
-    text-transform: lowercase;
-    text-decoration: none;
-    
-    @media (min-width: 1025px) {
-      font-size: var(--step-0);
-    }
+  }
+
+  .c-logo-img {
+    width: 10rem;
+    fill: currentColor;
   }
 
   .c-site-nav {
@@ -831,10 +827,8 @@
 
       @media (min-width: 1025px) {
         position: absolute;
-        top: var(--space);
+        top: var(--space-lg);
         left: var(--space-lg);
-        rotate: 90deg;
-        transform-origin: center left;
         z-index: var(--z-index-header);
       }
     }
